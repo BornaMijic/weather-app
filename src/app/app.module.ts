@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import {AuthComponent} from "./auth/auth.component";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { WeatherComponent } from './weather/weather.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent
+    AuthComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,

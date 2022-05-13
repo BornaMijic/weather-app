@@ -1,20 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgForm} from "@angular/forms";
 import {AuthService} from "./auth.service";
+import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent {
+export class AuthComponent implements OnDestroy{
+  login: boolean = false;
   error: string = "";
+  subscription: Subscription = new Subscription();
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   onSubmit(authForm: NgForm) {
-    this.authService.login(authForm.value.email, authForm.value.password)
+    const subscription = this.authService.login(authForm.value.email, authForm.value.password).subscribe(
+      resData => {
+          console.log(resData)
+          this.login = true;
+        console.log(this.login)
+        if(this.login == true) {
+          this.router.navigate(['weather'])
+        }
+      },
+      errorMes =>
+          this.error = errorMes
+      )
     authForm.reset()
+    this.login = false;
   }
 
 }
