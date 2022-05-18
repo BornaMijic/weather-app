@@ -26,8 +26,10 @@ export class AuthService {
       password: password,
       returnSecureToken: true
     }).pipe(tap(resData => {
-      const user: User = new User(resData.localId, resData.email,resData.idToken,new Date(new Date().getTime() + Number(resData.expiresIn) * 1000))
-      this.user.next(user)
+      const user: User = new User(resData.localId, resData.email,resData.idToken,new Date(new Date().getTime() + Number(resData.expiresIn) * 1000));
+      this.user.next(user);
+      const xToken = user.email + resData.idToken;
+      localStorage.setItem('X-token', JSON.stringify(xToken))
     }),catchError(this.handleError))
   }
 
@@ -41,6 +43,10 @@ export class AuthService {
     })
   }
 
-
+  logout(): void{
+    this.user.next(null);
+    localStorage.removeItem('X-token');
+    this.router.navigate([''])
+  }
 
 }
