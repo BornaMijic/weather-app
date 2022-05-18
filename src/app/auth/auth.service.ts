@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, catchError, Observable, of, tap, throwError} from "rxjs";
 import {User} from "./user.model";
 import {environment} from "../../environments/environment.prod";
+import {Router} from "@angular/router";
 
 export interface UserResposneData {
   idToken: string;
@@ -17,7 +18,7 @@ export interface UserResposneData {
 export class AuthService {
   user: BehaviorSubject<User|null> = new BehaviorSubject<User|null>(null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login(email: string, password: string) {
     return this.http.post<UserResposneData>(environment.signInUrl,{
@@ -39,5 +40,7 @@ export class AuthService {
       return errorMessage;
     })
   }
+
+
 
 }
