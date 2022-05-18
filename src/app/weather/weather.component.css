@@ -1,0 +1,17 @@
+.vertical-center {
+  position: relative;
+  top: 10vh;
+  height: 100vh;
+}
+
+.border-box {
+  border: 1px solid #0275d8;
+  border-radius: 25px;
+  background-color: #eeeeee;
+  box-shadow: 0 0 10px 5px grey;
+}
+
+h2 {
+  color: #0275d8;
+  padding-bottom: 10px;
+}

@@ -6,4 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./weather.component.css']
 })
 export class WeatherComponent {
+    cities: String[] = [];
+    cityName: string = "";
+    error: String = "";
 }

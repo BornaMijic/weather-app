@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="vertical-center border-box">
+    <div class="alert alert-danger" *ngIf="error.length !== 0">
+      <p class="text-center">{{error}}</p>
+    </div>
+    <div class="row">
+      <br/>
+      <form>
+        <div class="col-xs-offset-2 col-xs-6">
+          <input class="form-control" type="text" [(ngModel)]="cityName" name="cityName" id="cityName"/>
+          <div *ngIf="cities.length >= 10">
+            <p class="text-danger">We dont recommend adding more than 10 cities</p>
+          </div>
+        </div>
+        <div class="col-xs-4 searchButton">
+          <input type="button" class="btn btn-primary" value="search"/>
+        </div>
+      </form>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12">
+        <ul class="list-group">
+          <li class="list-group-item" *ngFor="let city of cities">
+            <p>{{city}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
