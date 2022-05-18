@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, catchError, Observable, of, tap, throwError} from "rxjs";
 import {User} from "./user.model";
+import {environment} from "../../environments/environment.prod";
 
 export interface UserResposneData {
   idToken: string;
@@ -19,12 +20,13 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string) {
-    return this.http.post<UserResposneData>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCfgBbiH9i6-3Lg22h47RNhyWZegGlyZjk",{
+    return this.http.post<UserResposneData>(environment.signInUrl,{
       email: email,
       password: password,
       returnSecureToken: true
     }).pipe(tap(resData => {
-      this.user.next(new User(resData.localId, resData.email,resData.idToken,new Date(new Date().getTime() + Number(resData.expiresIn) * 1000)))
+      const user: User = new User(resData.localId, resData.email,resData.idToken,new Date(new Date().getTime() + Number(resData.expiresIn) * 1000))
+      this.user.next(user)
     }),catchError(this.handleError))
   }
 
@@ -34,7 +36,6 @@ export class AuthService {
       if(error.error.error.message == "EMAIL_NOT_FOUND" || error.error.error.message == "INVALID_PASSWORD" ) {
         errorMessage = "Invalid email or password";
       }
-      console.log(error.error.error.message)
       return errorMessage;
     })
   }

@@ -9,10 +9,10 @@ import {Router} from "@angular/router";
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-export class AuthComponent implements OnDestroy{
+export class AuthComponent implements OnDestroy {
   login: boolean = false;
-  error: string = "";
-  subscription: Subscription = new Subscription();
+  error: string = '';
+  private subscription: Subscription = new Subscription();
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -23,16 +23,15 @@ export class AuthComponent implements OnDestroy{
   onSubmit(authForm: NgForm) {
     const subscription = this.authService.login(authForm.value.email, authForm.value.password).subscribe(
       resData => {
-          console.log(resData)
-          this.login = true;
-        console.log(this.login)
-        if(this.login == true) {
+        this.login = true;
+        if (this.login) {
           this.router.navigate(['weather'])
         }
       },
       errorMes =>
-          this.error = errorMes
-      )
+        this.error = errorMes
+    )
+    this.subscription.add(subscription)
     authForm.reset()
     this.login = false;
   }
