@@ -1,7 +1,8 @@
 .vertical-center {
   position: relative;
   top: 10vh;
-  height: 100vh;
+  margin-top: 10vh;
+  min-height: 100vh;
 }
 
 .border-box {
@@ -14,4 +15,19 @@
 h2 {
   color: #0275d8;
   padding-bottom: 10px;
+}
+
+input.ng-invalid.touched {
+  border: 1px solid red;
+}
+
+.weather-background {
+  background-color: white;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.working-area{
+  padding:20px;
 }

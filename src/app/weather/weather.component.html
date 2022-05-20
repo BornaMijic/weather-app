@@ -5,26 +5,26 @@
     </div>
     <div class="row">
       <br/>
-      <form>
+      <form #searchCity="ngForm" (ngSubmit)="addCity(searchCity)">
         <div class="col-xs-offset-2 col-xs-6">
-          <input class="form-control" type="text" [(ngModel)]="cityName" name="cityName" id="cityName"/>
-          <div *ngIf="cities.length >= 10">
+          <input class="form-control" type="text" placeholder="Search weather for specific city" name="cityName" id="cityName"  required  ngModel #cityName="ngModel"/>
+          <div *ngIf="weathers.length >= 10">
             <p class="text-danger">We dont recommend adding more than 10 cities</p>
           </div>
         </div>
         <div class="col-xs-4 searchButton">
-          <input type="button" class="btn btn-primary" value="search"/>
+          <input type="submit" class="btn btn-primary" value="search" [disabled]="!searchCity.valid"/>
         </div>
       </form>
     </div>
     <hr>
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="list-group">
-          <li class="list-group-item" *ngFor="let city of cities">
-            <p>{{city}}</p>
-          </li>
-        </ul>
+    <div class="row working-area">
+      <div class="col-md-4 offset-md-4" *ngFor="let weather of weathers">
+        <div class="weather-background text-center">
+          <p>{{weather.cityName}}</p>
+          <img class="img-responsive center-block" style="min-height: 80px" [src]="weather.icon"/>
+          <p>Current temperature: {{weather.currentTemperature}}<span>&#8451;</span></p>
+        </div>
       </div>
     </div>
   </div>
