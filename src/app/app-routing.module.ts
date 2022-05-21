@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {AuthComponent} from "./auth/auth.component";
 import {WeatherComponent} from "./weather/weather.component";
+import {WeatherDetailsComponent} from "./weather/weather-details/weather-details.component";
 
 const routes: Routes = [
   {path: '', component: AuthComponent},
-  {path: 'weather', component: WeatherComponent}
+  {path: 'weather', component: WeatherComponent},
+  {path: 'weather/:cityName', component: WeatherDetailsComponent}
 ];
 
 @NgModule({
