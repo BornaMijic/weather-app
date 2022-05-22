@@ -1,0 +1,11 @@
+<div class="row" *ngFor="let weather of hourlyWeather">
+  <div class="col-xs-4">
+        <p>{{weather.date | date:'HH:mm'}}    |</p>
+  </div>
+  <div class="col-xs-4">
+    <img  src="{{weather.icon}}"/>
+  </div>
+  <div class="col-xs-4">
+    <p > | {{weather.currentTemperature}}<span>&#8451;</span></p>
+  </div>
+</div>

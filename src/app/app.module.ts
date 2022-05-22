@@ -7,12 +7,18 @@ import {AuthComponent} from "./auth/auth.component";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { WeatherComponent } from './weather/weather.component';
+import {WeatherDetailsComponent} from "./weather/weather-details/weather-details.component";
+import {
+  WeatherDetailsHoursSpecificComponent
+} from "./weather/weather-details/weather-details-hours-specific/weather-details-hours-specific.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    WeatherComponent
+    WeatherComponent,
+    WeatherDetailsComponent,
+    WeatherDetailsHoursSpecificComponent
   ],
   imports: [
     BrowserModule,
