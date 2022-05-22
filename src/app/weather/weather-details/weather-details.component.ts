@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {WeatherService} from "../weather.service";
 import {Weather} from "../weather.model";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-weather-details',
@@ -10,13 +11,13 @@ import {Weather} from "../weather.model";
 export class WeatherDetailsComponent implements OnInit {
   forecasts: Weather[] = [];
 
-  constructor(private weatherService: WeatherService) {
+  constructor(private route: ActivatedRoute, private weatherService: WeatherService) {
   }
 
   ngOnInit(): void {
-    let cityName = "London"
-    this.weatherService.getFiveDayForecast("cityName").subscribe(
-      resData => {
+    let cityName = this.route.snapshot.params['cityName'];
+    this.weatherService.getFiveDayForecast(cityName).subscribe(
+      resData  => {
         for (let i = 0; i < 5; i++) {
           // @ts-ignore
           console.log(resData["list"][i])
