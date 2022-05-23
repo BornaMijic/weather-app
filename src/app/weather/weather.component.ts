@@ -6,12 +6,7 @@ import {AuthService} from "../auth/auth.service";
   templateUrl: './weather.component.html',
   styleUrls: ['./weather.component.css']
 })
-export class WeatherComponent implements OnInit{
-  isAuthenticated = false;
+export class WeatherComponent {
 
   constructor(private authService: AuthService) {}
-
-  ngOnInit(): void {
-  }
-
 }
