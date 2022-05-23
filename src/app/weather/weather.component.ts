@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../auth/auth.service";
 
 @Component({
@@ -7,6 +7,4 @@ import {AuthService} from "../auth/auth.service";
   styleUrls: ['./weather.component.css']
 })
 export class WeatherComponent {
-
-  constructor(private authService: AuthService) {}
 }
