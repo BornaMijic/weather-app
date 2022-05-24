@@ -7,12 +7,14 @@ import {AuthComponent} from "./auth/auth.component";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { WeatherComponent } from './weather/weather.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    WeatherComponent
+    WeatherComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
