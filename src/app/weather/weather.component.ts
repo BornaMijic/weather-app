@@ -4,6 +4,7 @@ import {Subscription} from "rxjs";
 import {WeatherService} from "./weather.service";
 import {Weather} from "./weather.model";
 
+
 @Component({
   selector: 'app-weather',
   templateUrl: './weather.component.html',
@@ -23,7 +24,7 @@ export class WeatherComponent {
       resData =>{
         if(resData != null) {
           // @ts-ignore
-          const temp = resData.main.temp
+          const temp = resData.main.temp - 274.15;
           // @ts-ignore
           const icon = `http://openweathermap.org/img/w/${resData.weather[0].icon}.png`;
           const weather: Weather = new Weather(cityName, temp, icon);

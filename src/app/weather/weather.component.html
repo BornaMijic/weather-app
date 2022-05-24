@@ -1,3 +1,4 @@
+<app-navigation></app-navigation>
 <div class="container">
   <div class="vertical-center border-box">
     <div class="alert alert-danger" *ngIf="error.length !== 0">
@@ -23,9 +24,10 @@
         <div class="weather-background text-center">
           <p>{{weather.cityName}}</p>
           <img class="img-responsive center-block" style="min-height: 80px" [src]="weather.icon"/>
-          <p>Current temperature: {{weather.currentTemperature}}<span>&#8451;</span></p>
+          <p>Current temperature: {{weather.currentTemperature | number : '1.2-2' }}<span>&#8451;</span></p>
         </div>
       </div>
     </div>
   </div>
 </div>
+
