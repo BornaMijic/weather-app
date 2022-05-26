@@ -35,3 +35,7 @@ input.ng-invalid.touched {
 .weather-detail-color{
   color:#808080;
 }
+
+.img-min-height{
+  min-height: 80px
+}

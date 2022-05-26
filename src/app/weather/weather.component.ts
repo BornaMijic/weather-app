@@ -14,8 +14,6 @@ export class WeatherComponent implements OnInit, OnDestroy {
   cities: string[] = []
   error: string = "";
   private subscription: Subscription = new Subscription();
-  private subscription1: Subscription = new Subscription();
-
 
   weatherForm!: FormGroup;
 
@@ -36,7 +34,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
 
     this.subscription.add(subscription);
 
-    this.subscription1 = this.weatherService.weatherSubject.subscribe(
+    subscription = this.weatherService.weatherSubject.subscribe(
       (forecastsData: Forecast[]) => {
         this.weathers = forecastsData;
         this.addFormArrayValues(this.weathers)
