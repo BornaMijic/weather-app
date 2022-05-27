@@ -21,7 +21,7 @@
             <h3>{{this.weatherCtrl.value['cityName']}}</h3>
             <hr/>
             <img class="img-responsive center-block img-min-height" [src]="this.weatherCtrl.value['weatherIcon']"/>
-            <p class="weather-detail-color">Temp: {{this.weatherCtrl.value['currentTemperature'] | number : '1.2-2' }}<span>&#8451;</span></p>
+            <p class="weather-detail-color">Temp: {{this.weatherCtrl.value['currentTemperature'] | number : NUMBER_FORMAT }}<span>&#8451;</span></p>
             <p class="weather-detail-color">Wind Speed: {{this.weatherCtrl.value['wind']}}</p>
             <p class="weather-detail-color">Humidity: {{this.weatherCtrl.value['humidity']}}</p>
           </div>

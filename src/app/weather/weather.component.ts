@@ -11,9 +11,10 @@ import {Forecast} from "./forecast.model";
 })
 export class WeatherComponent implements OnInit, OnDestroy {
   weathers: Forecast[] = [];
-  cities: string[] = []
+  cities: string[] = [];
   error: string = "";
   private subscription: Subscription = new Subscription();
+  readonly NUMBER_FORMAT: string = '1.2-2';
 
   weatherForm!: FormGroup;
 
@@ -81,8 +82,8 @@ export class WeatherComponent implements OnInit, OnDestroy {
   }
 
   addCity() {
-    if(this.weathers.length == 9) {
-      if(window.confirm('Are sure you want to add more than 10 cities?')){
+    if (this.weathers.length == 9) {
+      if (window.confirm('Are sure you want to add more than 10 cities?')) {
         this.weatherService.getCityWeather(this.weatherForm.controls['citySearchName'].value);
       }
     } else {

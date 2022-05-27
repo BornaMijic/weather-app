@@ -1,11 +1,10 @@
-export class User {
-  public id: string;
-  public email: string;
-  private idToken: string;
+interface IUser {
+  id: string;
+  email: string;
+  idToken: string;
+}
 
-  constructor(id: string, email: string, idToken: string) {
-    this.id = id;
-    this.email = email;
-    this.idToken = idToken;
-  }
+export class User implements IUser{
+  constructor(public id: string, public email: string, public idToken: string){}
+
 }
