@@ -15,7 +15,7 @@ export class WeatherDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let cityName = this.route.snapshot.params['cityName'];
+   /* let cityName = this.route.snapshot.params['cityName'];
     this.weatherService.getFiveDayForecast(cityName).subscribe(
       resData  => {
         for (let i = 0; i < 5; i++) {
@@ -34,7 +34,7 @@ export class WeatherDetailsComponent implements OnInit {
         }
         console.log(this.forecasts)
       }
-    );
+    );*/
   }
 
 }

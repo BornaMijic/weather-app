@@ -20,7 +20,7 @@ export class AuthComponent implements OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onSubmit(authForm: NgForm) {
+  onSubmit(authForm: NgForm): void {
     const subscription = this.authService.login(authForm.value.email, authForm.value.password).subscribe(
       resData => {
         this.login = true;
