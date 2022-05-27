@@ -28,14 +28,14 @@ input.ng-invalid.touched {
   margin-bottom: 20px;
 }
 
-.working-area{
-  padding:20px;
+.working-area {
+  padding: 20px;
 }
 
-.weather-detail-color{
-  color:#808080;
+.weather-detail-color {
+  color: #808080;
 }
 
-.img-min-height{
-  min-height: 80px
+.img-min-height {
+  min-height: 80px;
 }

@@ -29,15 +29,11 @@ input.ng-invalid.touched {
   margin-bottom: 20px;
 }
 
-.working-area{
-  padding:20px;
+.working-area {
+  padding: 20px;
   background-color: white;
   border-radius: 25px;
-  box-shadow: 0 0 10px 5px grey;
-
 }
-
-
 
 .text-color-grey {
   color: #808080;
@@ -45,4 +41,8 @@ input.ng-invalid.touched {
 
 .forecast-area {
   padding-bottom: 20px;
+}
+
+.img-min-height {
+  min-height: 80px;
 }

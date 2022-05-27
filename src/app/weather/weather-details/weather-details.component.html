@@ -1,21 +1,31 @@
+<app-navigation></app-navigation>
 <div class="container">
   <div class="vertical-center border-box">
     <div class="row working-area">
-      <div class="col-md-1">
-      </div>
-      <div class="col-md-2 offset-md-1 forecast-area" *ngFor="let forecast of forecasts">
-        <p class="text-color-grey text-center">{{forecast.date | date : DATE}}</p>
-        <hr/>
-        <img class="img-responsive center-block" style="min-height: 80px" [src]="forecast.icon"/>
+      <div class="col-md-1"></div>
+      <div
+        class="col-md-2 offset-md-1 forecast-area"
+        *ngFor="let forecast of forecasts"
+      >
+        <p class="text-color-grey text-center">
+          {{ forecast.date | date: DATE }}
+        </p>
+        <hr />
+        <img
+          class="img-responsive center-block img-min-height"
+          [src]="forecast.icon"
+        />
         <div>
-          <p class="pull-left"> {{forecast.maxTemperature | number: NUMBER_FORMAT}}<span>&#8451;</span></p>
-          <p class="pull-right text-color-grey "> {{forecast.minTemperature | number: NUMBER_FORMAT}}
-            <span>&#8451;</span></p>
+          <p class="pull-left">
+            {{ forecast.maxTemperature | number: NUMBER_FORMAT
+            }}<span>&#8451;</span>
+          </p>
+          <p class="pull-right text-color-grey">
+            {{ forecast.minTemperature | number: NUMBER_FORMAT }}
+            <span>&#8451;</span>
+          </p>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-

@@ -3,11 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {AuthComponent} from "./auth/auth.component";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import { AuthComponent } from './auth/auth.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { WeatherComponent } from './weather/weather.component';
-import {WeatherDetailsComponent} from "./weather/weather-details/weather-details.component";
+import { WeatherDetailsComponent } from './weather/weather-details/weather-details.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
@@ -16,16 +16,16 @@ import { NavigationComponent } from './navigation/navigation.component';
     AuthComponent,
     WeatherComponent,
     WeatherDetailsComponent,
-    NavigationComponent
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
