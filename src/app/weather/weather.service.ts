@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {DataStorageService} from "../shared/data-storage.service";
 import {Observable, of, Subject, tap} from "rxjs";
 import {Forecast} from "./forecast.model";
 import {RootObject} from "./root-object.model";
 import {environment} from "../../environments/environment.prod";
+import {RootObjectFiveDay} from "./weather-details/root-object-five-day.model";
 
 
 @Injectable({
@@ -34,7 +34,7 @@ export class WeatherService {
         const humidity: number = rootObject.main.humidity;
         const icon = `${environment.openWeatherImageURL}/img/wn/${rootObject.weather[0].icon}@2x.png`;
 
-        const weather: Forecast = new Forecast(name, temp, icon, wind, humidity);
+        const weather: Forecast = new Forecast(name, icon,temp, wind, humidity);
         this.weathers.push(weather)
         this.cities.push(city.toLowerCase());
         this.weatherSubject.next(this.weathers);
@@ -44,5 +44,9 @@ export class WeatherService {
         this.errorSubject.next("There is no city with that name");
       }
     )
+  }
+
+  getFiveDayForecast(cityName: string): Observable<RootObjectFiveDay> {
+    return this.dataStorageService.getFiveDayForecast(cityName)
   }
 }

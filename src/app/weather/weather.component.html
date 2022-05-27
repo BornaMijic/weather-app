@@ -16,7 +16,7 @@
     </div>
     <hr>
       <div class="row working-area" formArrayName="citiesForecast">
-        <div class="col-md-4 offset-md-4" *ngFor="let weatherCtrl of controls; let i = index" [formGroupName]="i">
+        <div class="col-md-4 offset-md-4" *ngFor="let weatherCtrl of controls; let i = index" [formGroupName]="i" [routerLink]="['/weather', this.weatherCtrl.value['cityName']]">
           <div class="weather-background text-center">
             <h3>{{this.weatherCtrl.value['cityName']}}</h3>
             <hr/>

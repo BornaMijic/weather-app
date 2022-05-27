@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {WeatherService} from "../weather.service";
-import {Weather} from "../weather.model";
 import {ActivatedRoute} from "@angular/router";
+import {environment} from "../../../environments/environment.prod";
+import {List, RootObjectFiveDay} from "./root-object-five-day.model";
+import {Subscription} from "rxjs";
+import {Forecast} from "../forecast.model";
 
 @Component({
   selector: 'app-weather-details',
@@ -9,32 +12,39 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./weather-details.component.css']
 })
 export class WeatherDetailsComponent implements OnInit {
-  forecasts: Weather[] = [];
+  forecasts: Forecast[] = [];
+  readonly NUMBER_FORMAT: string = '1.2-2';
+  readonly DATE: string = 'EEE';
+  private subscription: Subscription = new Subscription();
+
+
 
   constructor(private route: ActivatedRoute, private weatherService: WeatherService) {
   }
 
   ngOnInit(): void {
-   /* let cityName = this.route.snapshot.params['cityName'];
-    this.weatherService.getFiveDayForecast(cityName).subscribe(
-      resData  => {
-        for (let i = 0; i < 5; i++) {
-          // @ts-ignore
-          console.log(resData["list"][i])
-          // @ts-ignore
-          const date: Date = resData["list"][i].dt_txt;
-          // @ts-ignore
-          const icon: String = "http://openweathermap.org/img/w/" + resData["list"][i].weather[0].icon + ".png";
-          // @ts-ignore
-          const tempMin: String = resData["list"][i].main.temp_min;
-          // @ts-ignore
-          const tempMax: String = resData["list"][i].main.temp_max;
-          const forecast: Weather = new Weather("London", icon, date, tempMax, tempMin);
-          this.forecasts.push(forecast)
-        }
-        console.log(this.forecasts)
+   let cityName = this.route.snapshot.params['cityName'];
+    const subscription: Subscription = this.weatherService.getFiveDayForecast(cityName).subscribe(
+      (resData:RootObjectFiveDay)  => {
+        this.setForecastsForFiveDays(resData,cityName);
       }
-    );*/
+    );
+    this.subscription.add(subscription);
+  }
+
+  private setForecastsForFiveDays(resData: RootObjectFiveDay, cityName: string) {
+    for (let i = 0; i < 40; i=i+8) {
+      const listForecast: List = resData.list[i];
+      const date: Date = new Date(listForecast.dt_txt);
+      const icon: string = `${environment.openWeatherImageURL}/img/wn/${listForecast.weather[0].icon}@2x.png`;
+      const tempMin: number = listForecast.main.temp_min - 274.15;
+      const tempMax: number= listForecast.main.temp_max - 274.15;
+      const temp : number = listForecast.main.temp - 274.15;
+      const wind : number = listForecast.wind.speed;
+      const humidity: number = listForecast.main.humidity;
+      const forecast: Forecast = new Forecast(cityName, icon,temp, wind, humidity,tempMax, tempMin, date);
+      this.forecasts.push(forecast)
+    }
   }
 
 }
