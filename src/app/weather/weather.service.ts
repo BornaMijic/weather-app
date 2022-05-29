@@ -4,6 +4,7 @@ import {Observable, of, Subject, tap} from "rxjs";
 import {Forecast} from "./forecast.model";
 import {RootObject} from "./root-object.model";
 import {environment} from "../../environments/environment.prod";
+import {FormArray} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,12 @@ export class WeatherService {
         this.errorSubject.next("There is no city with that name");
       }
     )
+  }
+
+  deleteWeather(index: number): void {
+    this.weathers.splice(index,1);
+    this.weatherSubject.next(this.weathers);
+    this.cities.splice(index,1);
   }
 
 }

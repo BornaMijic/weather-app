@@ -24,6 +24,7 @@
             <p class="weather-detail-color">Temp: {{this.weatherCtrl.value['currentTemperature'] | number : NUMBER_FORMAT }}<span>&#8451;</span></p>
             <p class="weather-detail-color">Wind Speed: {{this.weatherCtrl.value['wind']}}</p>
             <p class="weather-detail-color">Humidity: {{this.weatherCtrl.value['humidity']}}</p>
+            <button type="button" class="btn btn-danger" (click)="deleteWeather(i)">X</button>
           </div>
         </div>
       </div>

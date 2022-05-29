@@ -106,6 +106,10 @@ export class WeatherComponent implements OnInit, OnDestroy {
     }
   }
 
+  deleteWeather(index: number) {
+    this.weatherService.deleteWeather(index);
+  }
+
 
 }
 
