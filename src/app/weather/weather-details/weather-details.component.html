@@ -6,7 +6,7 @@
       <div
         class="col-md-2 offset-md-1 forecast-area"
         *ngFor="let forecast of forecasts"
-        routerLink="{{forecast.date | date: DATE}}"
+        routerLink="{{ forecast.date | date: DATE }}"
       >
         <p class="text-color-grey text-center">
           {{ forecast.date | date: DATE }}
@@ -18,7 +18,8 @@
         />
         <div>
           <p class="pull-left">
-            {{ forecast.maxTemperature | number: NUMBER_FORMAT}}<span>&#8451;</span>
+            {{ forecast.maxTemperature | number: NUMBER_FORMAT
+            }}<span>&#8451;</span>
           </p>
           <p class="pull-right text-color-grey">
             {{ forecast.minTemperature | number: NUMBER_FORMAT }}

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {AuthComponent} from "./auth/auth.component";
-import {WeatherComponent} from "./weather/weather.component";
-import {WeatherDetailsHoursSpecificComponent} from "./weather/weather-details/weather-details-hours-specific/weather-details-hours-specific.component";
+import { AuthComponent } from './auth/auth.component';
+import { WeatherComponent } from './weather/weather.component';
+import { WeatherDetailsHoursSpecificComponent } from './weather/weather-details/weather-details-hours-specific/weather-details-hours-specific.component';
 import { WeatherDetailsComponent } from './weather/weather-details/weather-details.component';
 import { AuthGuard } from './auth/auth.guard';
 
@@ -14,7 +14,11 @@ const routes: Routes = [
     component: WeatherDetailsComponent,
     canActivate: [AuthGuard],
   },
-  {path: 'weather/:cityName/:day', component: WeatherDetailsHoursSpecificComponent, canActivate: [AuthGuard]}
+  {
+    path: 'weather/:cityName/:day',
+    component: WeatherDetailsHoursSpecificComponent,
+    canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({

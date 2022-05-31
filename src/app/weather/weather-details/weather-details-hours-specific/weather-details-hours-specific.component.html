@@ -1,15 +1,19 @@
+<app-navigation></app-navigation>
 <div class="container">
   <div class="vertical-center border-box">
     <div class="row working-area" *ngFor="let weather of hourlyWeather">
-        <div class="col-xs-4">
-          <p class="text-center">{{weather.date | date:'HH:mm'}}    |</p>
-        </div>
-        <div class="col-xs-4">
-          <img class="center-block" src="{{weather.icon}}"/>
-        </div>
-        <div class="col-xs-4">
-          <p class="text-center"> | {{weather.currentTemperature | number: NUMBER_FORMAT}}<span>&#8451;</span></p>
-        </div>
+      <div class="col-xs-4">
+        <p class="text-center">{{ weather.date | date: "HH:mm" }} |</p>
+      </div>
+      <div class="col-xs-4">
+        <img class="center-block" src="{{ weather.icon }}" />
+      </div>
+      <div class="col-xs-4">
+        <p class="text-center">
+          | {{ weather.currentTemperature | number: NUMBER_FORMAT
+          }}<span>&#8451;</span>
+        </p>
+      </div>
     </div>
   </div>
 </div>

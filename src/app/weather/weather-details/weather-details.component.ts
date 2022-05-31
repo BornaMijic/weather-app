@@ -27,16 +27,14 @@ export class WeatherDetailsComponent implements OnInit {
     const subscription: Subscription = this.weatherService
       .getFiveDayForecast(cityName)
       .subscribe((resData: RootObjectFiveDay) => {
-        this.setForecastsForFiveDays(resData, cityName);
+        this.setForecastsForFiveDays(resData);
       });
     this.subscription.add(subscription);
   }
 
-  private setForecastsForFiveDays(
-    resData: RootObjectFiveDay,
-    cityName: string
-  ) : void {
+  private setForecastsForFiveDays(resData: RootObjectFiveDay): void {
     for (let i = 0; i < 40; i = i + 8) {
+      const cityName: string = resData.city.name;
       const listForecast: List = resData.list[i];
       const date: Date = new Date(listForecast.dt_txt);
       const icon: string = `${environment.openWeatherImageURL}/img/wn/${listForecast.weather[0].icon}@2x.png`;
