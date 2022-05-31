@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {WeatherService} from "../../weather.service";
 import {Weather} from "../../weather.model";
+import {environment} from "../../../../environments/environment.prod";
 
 @Component({
   selector: 'app-weather-details-hours-specific',
@@ -32,13 +33,13 @@ export class WeatherDetailsHoursSpecificComponent implements OnInit {
           }
         })
         this.hourlyWeather = weatherForSpecificDay.map((weather: any) => {
-          const iconUrl: string = "http://openweathermap.org/img/w/" + weather.weather[0].icon + ".png";
+          const iconUrl: string = `${environment.openWeatherImageURL}/img/wn/${weather.weather[0].icon }@2x.png`;
           return new Weather(weather.dt_txt, iconUrl, weather.main.temp);
         })
 
       }
     );
   }
-  
+
 
 }
