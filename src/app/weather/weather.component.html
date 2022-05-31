@@ -2,32 +2,61 @@
 <div class="container">
   <div class="vertical-center border-box">
     <div class="alert alert-danger" *ngIf="error.length !== 0">
-      <p class="text-center">{{error}}</p>
+      <p class="text-center">{{ error }}</p>
     </div>
     <form [formGroup]="weatherForm" (ngSubmit)="addCity()">
-    <div class="row">
-      <br/>
+      <div class="row">
+        <br />
         <div class="col-xs-offset-2 col-xs-6">
-          <input formControlName="citySearchName" class="form-control" type="text" placeholder="Search weather for specific city" name="cityName" id="cityName" />
+          <input
+            formControlName="citySearchName"
+            class="form-control"
+            type="text"
+            placeholder="Search weather for specific city"
+            name="cityName"
+            id="cityName"
+          />
         </div>
         <div class="col-xs-4 searchButton">
-          <input type="submit" class="btn btn-primary" value="search" [disabled]="!weatherForm.valid"/>
+          <input
+            type="submit"
+            class="btn btn-primary"
+            value="search"
+            [disabled]="!weatherForm.valid"
+          />
         </div>
-    </div>
-    <hr>
+      </div>
+      <hr />
       <div class="row working-area" formArrayName="citiesForecast">
-        <div class="col-md-4 offset-md-4" *ngFor="let weatherCtrl of controls; let i = index" [formGroupName]="i">
+        <div
+          class="col-md-4 offset-md-4"
+          *ngFor="let weatherCtrl of controls; let i = index"
+          [formGroupName]="i"
+          [routerLink]="['/weather', this.weatherCtrl.value['cityName']]"
+        >
           <div class="weather-background text-center">
-            <h3>{{this.weatherCtrl.value['cityName']}}</h3>
-            <hr/>
-            <img class="img-responsive center-block img-min-height" [src]="this.weatherCtrl.value['weatherIcon']"/>
-            <p class="weather-detail-color">Temp: {{this.weatherCtrl.value['currentTemperature'] | number : NUMBER_FORMAT }}<span>&#8451;</span></p>
-            <p class="weather-detail-color">Wind Speed: {{this.weatherCtrl.value['wind']}}</p>
-            <p class="weather-detail-color">Humidity: {{this.weatherCtrl.value['humidity']}}</p>
+            <h3>{{ this.weatherCtrl.value["cityName"] }}</h3>
+            <hr />
+            <img
+              class="img-responsive center-block img-min-height"
+              [src]="this.weatherCtrl.value['weatherIcon']"
+            />
+            <p class="weather-detail-color">
+              Temp:
+              {{
+                this.weatherCtrl.value["currentTemperature"]
+                  | number: NUMBER_FORMAT
+              }}<span>&#8451;</span>
+            </p>
+            <p class="weather-detail-color">
+              Wind Speed: {{ this.weatherCtrl.value["wind"] }}
+            </p>
+            <p class="weather-detail-color">
+              Humidity: {{ this.weatherCtrl.value["humidity"] }}
+            </p>
           </div>
         </div>
       </div>
     </form>
   </div>
 </div>
-
