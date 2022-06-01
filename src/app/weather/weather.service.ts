@@ -56,4 +56,8 @@ export class WeatherService {
   getFiveDayForecast(cityName: string): Observable<RootObjectFiveDay> {
     return this.dataStorageService.getFiveDayForecast(cityName);
   }
+
+  getHourlyWeatherForecast(cityName: string): Observable<RootObjectFiveDay> {
+    return this.dataStorageService.getHourlyWeatherForecast(cityName);
+  }
 }

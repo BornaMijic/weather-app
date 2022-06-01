@@ -11,6 +11,12 @@ import { RootObjectFiveDay } from '../weather/weather-details/root-object-five-d
 export class DataStorageService {
   constructor(private http: HttpClient) {}
 
+  getHourlyWeatherForecast(city: string): Observable<RootObjectFiveDay> {
+    return this.http.get<RootObjectFiveDay>(
+      `${environment.openWeatherSpecificCityUrl}forecast?q=${city}&APPID=${environment.apiKey}`
+    );
+  }
+
   getFiveDayForecast(city: string): Observable<RootObjectFiveDay> {
     return this.http.get<RootObjectFiveDay>(
       `${environment.openWeatherSpecificCityUrl}forecast?q=${city}&APPID=${environment.apiKey}`

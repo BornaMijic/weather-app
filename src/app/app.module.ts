@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { WeatherComponent } from './weather/weather.component';
 import { WeatherDetailsComponent } from './weather/weather-details/weather-details.component';
+import { WeatherDetailsHoursSpecificComponent } from './weather/weather-details/weather-details-hours-specific/weather-details-hours-specific.component';
 import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { NavigationComponent } from './navigation/navigation.component';
     AuthComponent,
     WeatherComponent,
     WeatherDetailsComponent,
+    WeatherDetailsHoursSpecificComponent,
     NavigationComponent,
   ],
   imports: [
