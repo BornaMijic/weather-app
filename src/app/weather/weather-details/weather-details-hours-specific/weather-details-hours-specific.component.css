@@ -12,30 +12,16 @@
   box-shadow: 0 0 10px 5px #808080;
 }
 
-h2 {
-  color: #0275d8;
-  padding-bottom: 10px;
-}
-
-input.ng-invalid.touched {
-  border: 1px solid red;
-}
-
 .weather-background {
-  background-color: white;
+  background-color: #ffffff;
   border-radius: 15px;
-  padding: 15px;
   margin-bottom: 20px;
 }
 
 .working-area {
   padding: 20px;
-}
-
-.weather-detail-color {
-  color: #808080;
-}
-
-.img-min-height {
-  min-height: 80px;
+  background-color: #ffffff;
+  margin: 25px;
+  border-radius: 25px;
+  box-shadow: 0 0 10px 5px #808080;
 }

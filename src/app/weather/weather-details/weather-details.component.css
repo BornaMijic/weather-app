@@ -9,7 +9,8 @@
   border: 1px solid #0275d8;
   border-radius: 25px;
   background-color: #eeeeee;
-  box-shadow: 0 0 10px 5px #808080;
+  box-shadow: 0 0 10px 5px grey;
+  padding: 35px;
 }
 
 h2 {
@@ -30,10 +31,16 @@ input.ng-invalid.touched {
 
 .working-area {
   padding: 20px;
+  background-color: white;
+  border-radius: 25px;
 }
 
-.weather-detail-color {
+.text-color-grey {
   color: #808080;
+}
+
+.forecast-area {
+  padding-bottom: 20px;
 }
 
 .img-min-height {
