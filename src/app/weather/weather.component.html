@@ -32,7 +32,7 @@
           class="col-md-4 offset-md-4"
           *ngFor="let weatherCtrl of controls; let i = index"
           [formGroupName]="i"
-          [routerLink]="['/weather', this.weatherCtrl.value['cityName']]"
+          [routerLink]="['/weather', this.weatherCtrl.value['cityName']]" 
         >
           <div class="weather-background text-center">
             <h3>{{ this.weatherCtrl.value["cityName"] }}</h3>
@@ -54,6 +54,13 @@
             <p class="weather-detail-color">
               Humidity: {{ this.weatherCtrl.value["humidity"] }}
             </p>
+            <div [routerLink]="undefined">
+              <button
+                class="btn btn-primary"
+                (click)="addFavorite(weatherCtrl);$event.stopPropagation()">
+                ADD TO FAVORITE
+              </button>
+            </div>
           </div>
         </div>
       </div>

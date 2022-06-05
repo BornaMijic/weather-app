@@ -1,11 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  Form,
   FormArray,
   FormControl,
   FormGroup,
-  NgForm,
   Validators,
 } from '@angular/forms';
 import { Observable, of, Subscription } from 'rxjs';
@@ -104,6 +102,12 @@ export class WeatherComponent implements OnInit, OnDestroy {
       );
     }
     this.weatherForm.controls['citySearchName'].reset();
+  }
+
+  addFavorite(weatherCtrl: AbstractControl): void {
+    let forecast: Forecast = new Forecast(weatherCtrl.value["cityName"],weatherCtrl.value['weatherIcon'],weatherCtrl.value["currentTemperature"],weatherCtrl.value["wind"],weatherCtrl.value["humidity"]);
+    this.weatherService.addFavorite(forecast)
+    this.error=''
   }
 
   private addFormArrayValues(weathers: Forecast[]) {

@@ -1,0 +1,32 @@
+.vertical-center {
+  position: relative;
+  top: 10vh;
+  margin-top: 10vh;
+  min-height: 100vh;
+}
+
+.border-box {
+  border: 1px solid #0275d8;
+  border-radius: 25px;
+  background-color: #eeeeee;
+  box-shadow: 0 0 10px 5px #808080;
+}
+
+.weather-background {
+  background-color: white;
+  border-radius: 15px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.working-area {
+  padding: 20px;
+}
+
+.weather-detail-color {
+  color: #808080;
+}
+
+.img-min-height {
+  min-height: 80px;
+}

@@ -5,6 +5,7 @@ import { Forecast } from './forecast.model';
 import { RootObject } from './root-object.model';
 import { environment } from '../../environments/environment.prod';
 import { RootObjectFiveDay } from './weather-details/root-object-five-day.model';
+import {FormGroup} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,8 @@ export class WeatherService {
   weathers: Forecast[] = [];
   errorSubject: Subject<string> = new Subject<string>();
   cities: string[] = [];
+  weatherFavoriteSubject: Subject<Forecast[]> = new Subject<Forecast[]>();
+  weathersFavorites: Forecast[] = [];
 
   constructor(private dataStorageService: DataStorageService) {}
 
@@ -23,6 +26,10 @@ export class WeatherService {
 
   getCitiesWeathers(): Forecast[] {
     return this.weathers;
+  }
+
+  getFavoriteWeathers(): Forecast[] {
+    return this.weathersFavorites;
   }
 
   getCityWeather(city: string): void {
@@ -59,5 +66,10 @@ export class WeatherService {
 
   getHourlyWeatherForecast(cityName: string): Observable<RootObjectFiveDay> {
     return this.dataStorageService.getHourlyWeatherForecast(cityName);
+  }
+
+  addFavorite(weatherFavorite: Forecast) {
+    this.weathersFavorites.push(weatherFavorite)
+    this.weatherFavoriteSubject.next(this.weathersFavorites);
   }
 }
