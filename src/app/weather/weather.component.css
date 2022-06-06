@@ -39,3 +39,25 @@ input.ng-invalid.touched {
 .img-min-height {
   min-height: 80px;
 }
+
+.heart-color {
+  filter: invert(41%) sepia(96%) saturate(7498%) hue-rotate(356deg) brightness(98%) contrast(90%);
+}
+
+.heart-color-no-favorite {
+  filter: invert(95%) sepia(24%) saturate(5537%) hue-rotate(292deg) brightness(92%) contrast(97%);
+}
+
+.relative-position {
+  position: relative;
+}
+
+.absolute-position {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.heart-size {
+  width:40px;
+}

@@ -120,6 +120,12 @@ export class WeatherComponent implements OnInit, OnDestroy {
     return false;
   }
 
+  removeFavoriteWithName(event: Event,cityName: string) {
+    event.stopPropagation()
+    let index: number = this.favoriteCities.findIndex(city => city = cityName);
+    this.weatherService.removeFavorite(index)
+  }
+
   deleteWeather(index: number) {
     this.weatherService.deleteWeather(index);
     this.weatherForm.controls['citySearchName'].reset();

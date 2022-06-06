@@ -34,8 +34,15 @@
           [formGroupName]="i"
           [routerLink]="['/weather', weatherCtrl.value['cityName']]"
         >
-          <div class="weather-background text-center">
+          <div class="weather-background text-center relative-position">
             <h3>{{ this.weatherCtrl.value["cityName"] }}</h3>
+            <button
+              type="button"
+              class="btn btn-danger absolute-position"
+              (click)="deleteWeather(i)"
+            >
+              X
+            </button>
             <hr />
             <img
               class="img-responsive center-block img-min-height"
@@ -54,18 +61,8 @@
             <p class="weather-detail-color">
               Humidity: {{ this.weatherCtrl.value["humidity"] }}
             </p>
-              <button *ngIf="!checkIfAlreadyFavorite(weatherCtrl.value['cityName'])"
-                class="btn btn-primary"
-                (click)="addFavorite($event, weatherCtrl)">
-                ADD TO FAVORITE
-              </button>
-            <button
-              type="button"
-              class="btn btn-danger"
-              (click)="deleteWeather(i)"
-            >
-              X
-            </button>
+            <img class="heart-color-no-favorite heart-size" *ngIf="!checkIfAlreadyFavorite(weatherCtrl.value['cityName'])" src="assets/images/heart.svg" (click)="addFavorite($event, weatherCtrl)"/>
+            <img class="heart-color heart-size" *ngIf="checkIfAlreadyFavorite(weatherCtrl.value['cityName'])" src="assets/images/heart-fill.svg" (click)="removeFavoriteWithName($event,weatherCtrl.value['cityName'])"/>
           </div>
         </div>
       </div>
