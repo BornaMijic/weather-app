@@ -12,9 +12,8 @@ import {Subscription} from "rxjs";
 export class WeatherFavoritesComponent implements OnInit,OnDestroy {
   favoriteWeathers: Forecast[] = [];
   cities: string[] = [];
-  favoriteWeathersArray: FormArray = new FormArray([]);
   private subscription: Subscription = new Subscription();
-  readonly NUMBER_FORMAT: string = '1.2-2';
+  readonly NUMBER_FORMAT: string = '1.0-0';
 
   constructor(private weatherService: WeatherService) { }
 

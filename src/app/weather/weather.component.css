@@ -40,24 +40,31 @@ input.ng-invalid.touched {
   min-height: 80px;
 }
 
-.heart-color {
-  filter: invert(41%) sepia(96%) saturate(7498%) hue-rotate(356deg) brightness(98%) contrast(90%);
+.bookmark-color {
+  filter: invert(41%) sepia(58%) saturate(494%) hue-rotate(166deg) brightness(94%) contrast(93%);
 }
 
-.heart-color-no-favorite {
-  filter: invert(95%) sepia(24%) saturate(5537%) hue-rotate(292deg) brightness(92%) contrast(97%);
+.bookmark-color-no-favorite {
+  filter: invert(82%) sepia(4%) saturate(4516%) hue-rotate(179deg) brightness(94%) contrast(90%);
 }
 
 .relative-position {
   position: relative;
 }
 
-.absolute-position {
+.absolute-position-right {
   position: absolute;
   right: 20px;
   top: 20px;
 }
 
-.heart-size {
+.absolute-position-left {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+
+.bookmark-size {
   width:40px;
 }

@@ -21,7 +21,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
   favoriteCities: string[] = [];
   error: string = '';
   private subscription: Subscription = new Subscription();
-  readonly NUMBER_FORMAT: string = '1.2-2';
+  readonly NUMBER_FORMAT: string = '1.0-0';
 
   weatherForm!: FormGroup;
 
@@ -122,7 +122,7 @@ export class WeatherComponent implements OnInit, OnDestroy {
 
   removeFavoriteWithName(event: Event,cityName: string) {
     event.stopPropagation()
-    let index: number = this.favoriteCities.findIndex(city => city = cityName);
+    let index: number = this.favoriteCities.findIndex(city => city == cityName);
     this.weatherService.removeFavorite(index)
   }
 

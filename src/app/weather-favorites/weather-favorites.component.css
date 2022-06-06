@@ -30,3 +30,22 @@
 .img-min-height {
   min-height: 80px;
 }
+
+.bookmark-color {
+  filter: invert(41%) sepia(58%) saturate(494%) hue-rotate(166deg) brightness(94%) contrast(93%);
+}
+
+.relative-position {
+  position: relative;
+}
+
+.absolute-position-right {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.bookmark-size {
+  width:40px;
+}
+

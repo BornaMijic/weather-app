@@ -13,7 +13,7 @@ import { Forecast } from '../forecast.model';
 })
 export class WeatherDetailsComponent implements OnInit {
   forecasts: Forecast[] = [];
-  readonly NUMBER_FORMAT: string = '1.2-2';
+  readonly NUMBER_FORMAT: string = '1.0-0';
   readonly DATE: string = 'EEE';
   private subscription: Subscription = new Subscription();
 

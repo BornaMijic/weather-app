@@ -8,8 +8,9 @@
           *ngFor="let weatherFavorite of favoriteWeathers; let i = index"
           [routerLink]="['/weather', weatherFavorite.cityName]"
         >
-          <div class="weather-background text-center">
+          <div class="weather-background text-center relative-position">
             <h3>{{ weatherFavorite.cityName }}</h3>
+            <img class="bookmark-color bookmark-size absolute-position-left absolute-position-right" src="assets/images/bookmark-check-fill.svg" (click)=removeFavorite(i)/>
             <hr/>
             <img
               class="img-responsive center-block img-min-height"
@@ -28,9 +29,6 @@
             <p class="weather-detail-color">
               Humidity: {{ weatherFavorite.humidity }}
             </p>
-            <button class="btn btn-primary" (click)=removeFavorite(i)>
-              REMOVE FROM FAVORITE
-            </button>
           </div>
         </div>
       </div>

@@ -36,9 +36,11 @@
         >
           <div class="weather-background text-center relative-position">
             <h3>{{ this.weatherCtrl.value["cityName"] }}</h3>
+            <img class="bookmark-color-no-favorite bookmark-size absolute-position-left" *ngIf="!checkIfAlreadyFavorite(weatherCtrl.value['cityName'])" src="assets/images/bookmark-check.svg" (click)="addFavorite($event, weatherCtrl)"/>
+            <img class="bookmark-color bookmark-size absolute-position-left" *ngIf="checkIfAlreadyFavorite(weatherCtrl.value['cityName'])" src="assets/images/bookmark-check-fill.svg" (click)="removeFavoriteWithName($event,weatherCtrl.value['cityName'])"/>
             <button
               type="button"
-              class="btn btn-danger absolute-position"
+              class="btn btn-primary absolute-position-right"
               (click)="deleteWeather(i)"
             >
               X
@@ -61,8 +63,6 @@
             <p class="weather-detail-color">
               Humidity: {{ this.weatherCtrl.value["humidity"] }}
             </p>
-            <img class="heart-color-no-favorite heart-size" *ngIf="!checkIfAlreadyFavorite(weatherCtrl.value['cityName'])" src="assets/images/heart.svg" (click)="addFavorite($event, weatherCtrl)"/>
-            <img class="heart-color heart-size" *ngIf="checkIfAlreadyFavorite(weatherCtrl.value['cityName'])" src="assets/images/heart-fill.svg" (click)="removeFavoriteWithName($event,weatherCtrl.value['cityName'])"/>
           </div>
         </div>
       </div>
