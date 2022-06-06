@@ -105,9 +105,14 @@ export class WeatherComponent implements OnInit, OnDestroy {
   }
 
   addFavorite(weatherCtrl: AbstractControl): void {
-    let forecast: Forecast = new Forecast(weatherCtrl.value["cityName"],weatherCtrl.value['weatherIcon'],weatherCtrl.value["currentTemperature"],weatherCtrl.value["wind"],weatherCtrl.value["humidity"]);
+    let forecast: Forecast = new Forecast(weatherCtrl.value["cityName"], weatherCtrl.value['weatherIcon'], weatherCtrl.value["currentTemperature"], weatherCtrl.value["wind"], weatherCtrl.value["humidity"]);
     this.weatherService.addFavorite(forecast)
-    this.error=''
+    this.error = ''
+  }
+
+  deleteWeather(index: number) {
+    this.weatherService.deleteWeather(index);
+    this.weatherForm.controls['citySearchName'].reset();
   }
 
   private addFormArrayValues(weathers: Forecast[]) {
