@@ -54,6 +54,13 @@
             <p class="weather-detail-color">
               Humidity: {{ this.weatherCtrl.value["humidity"] }}
             </p>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deleteWeather(i)"
+            >
+              X
+            </button>
           </div>
         </div>
       </div>

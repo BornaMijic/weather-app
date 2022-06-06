@@ -106,6 +106,11 @@ export class WeatherComponent implements OnInit, OnDestroy {
     this.weatherForm.controls['citySearchName'].reset();
   }
 
+  deleteWeather(index: number) {
+    this.weatherService.deleteWeather(index);
+    this.weatherForm.controls['citySearchName'].reset();
+  }
+
   private addFormArrayValues(weathers: Forecast[]) {
     for (let weather of weathers) {
       (<FormArray>this.weatherForm.get('citiesForecast')).push(

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { DataStorageService } from '../shared/data-storage.service';
 import { Observable, of, Subject, tap } from 'rxjs';
 import { Forecast } from './forecast.model';
@@ -59,5 +60,11 @@ export class WeatherService {
 
   getHourlyWeatherForecast(cityName: string): Observable<RootObjectFiveDay> {
     return this.dataStorageService.getHourlyWeatherForecast(cityName);
+  }
+
+  deleteWeather(index: number): void {
+    this.weathers.splice(index, 1);
+    this.weatherSubject.next(this.weathers);
+    this.cities.splice(index, 1);
   }
 }
