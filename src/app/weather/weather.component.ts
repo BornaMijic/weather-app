@@ -18,6 +18,7 @@ import { Forecast } from './forecast.model';
 export class WeatherComponent implements OnInit, OnDestroy {
   weathers: Forecast[] = [];
   cities: string[] = [];
+  favoriteCities: string[] = [];
   error: string = '';
   private subscription: Subscription = new Subscription();
   readonly NUMBER_FORMAT: string = '1.2-2';
@@ -36,6 +37,14 @@ export class WeatherComponent implements OnInit, OnDestroy {
     });
 
     let subscription = this.weatherService
+      .getFavoriteCities()
+      .subscribe((resData: string[]) => {
+        this.favoriteCities = resData;
+      });
+
+    this.subscription.add(subscription);
+
+    subscription = this.weatherService
       .getSearchedCityNames()
       .subscribe((resData: string[]) => {
         this.cities = resData;
@@ -104,15 +113,24 @@ export class WeatherComponent implements OnInit, OnDestroy {
     this.weatherForm.controls['citySearchName'].reset();
   }
 
-  addFavorite(weatherCtrl: AbstractControl): void {
+  addFavorite(event: Event,weatherCtrl: AbstractControl): boolean {
+    event.stopPropagation()
     let forecast: Forecast = new Forecast(weatherCtrl.value["cityName"], weatherCtrl.value['weatherIcon'], weatherCtrl.value["currentTemperature"], weatherCtrl.value["wind"], weatherCtrl.value["humidity"]);
-    this.weatherService.addFavorite(forecast)
-    this.error = ''
+    this.weatherService.addFavorite(forecast);
+    return false;
   }
 
   deleteWeather(index: number) {
     this.weatherService.deleteWeather(index);
     this.weatherForm.controls['citySearchName'].reset();
+  }
+
+  checkIfAlreadyFavorite(cityName: string) {
+    if(this.favoriteCities.find(city => city == cityName)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   private addFormArrayValues(weathers: Forecast[]) {

@@ -1,11 +1,11 @@
 <app-navigation></app-navigation>
 <div class="container">
   <div class="vertical-center border-box">
-    <div *ngIf="weathersFavorites.length > 0">
+    <div *ngIf="favoriteWeathers.length > 0">
       <div class="row working-area">
         <div
           class="col-md-4 offset-md-4"
-          *ngFor="let weatherFavorite of weathersFavorites; let i = index"
+          *ngFor="let weatherFavorite of favoriteWeathers; let i = index"
           [routerLink]="['/weather', weatherFavorite.cityName]"
         >
           <div class="weather-background text-center">
@@ -28,6 +28,9 @@
             <p class="weather-detail-color">
               Humidity: {{ weatherFavorite.humidity }}
             </p>
+            <button class="btn btn-primary" (click)=removeFavorite(i)>
+              REMOVE FROM FAVORITE
+            </button>
           </div>
         </div>
       </div>

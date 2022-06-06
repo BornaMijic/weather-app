@@ -10,22 +10,28 @@ import {Subscription} from "rxjs";
   styleUrls: ['./weather-favorites.component.css']
 })
 export class WeatherFavoritesComponent implements OnInit,OnDestroy {
-  weathersFavorites: Forecast[] = [];
+  favoriteWeathers: Forecast[] = [];
   cities: string[] = [];
-  favoriteWeathers: FormArray = new FormArray([]);
+  favoriteWeathersArray: FormArray = new FormArray([]);
   private subscription: Subscription = new Subscription();
   readonly NUMBER_FORMAT: string = '1.2-2';
 
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit(): void {
-      this.weathersFavorites = this.weatherService.getFavoriteWeathers();
-    let subscription = this.weatherService.weatherFavoriteSubject.subscribe(
+      this.favoriteWeathers = this.weatherService.getFavoriteWeathers();
+      console.log(this.favoriteWeathers)
+    let subscription = this.weatherService.favoriteWeathersSubject.subscribe(
       (forecastsFavoriteData: Forecast[]) => {
-        this.weathersFavorites= forecastsFavoriteData;
+        this.favoriteWeathers = forecastsFavoriteData;
+        console.log(this.favoriteWeathers)
       }
     );
     this.subscription.add(subscription)
+  }
+
+  removeFavorite(index: number): void {
+    this.weatherService.removeFavorite(index)
   }
 
   ngOnDestroy(): void {
