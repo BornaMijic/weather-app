@@ -6,7 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Observable, of, Subscription } from 'rxjs';
+import {Subscription } from 'rxjs';
 import { WeatherService } from './weather.service';
 import { Forecast } from './forecast.model';
 

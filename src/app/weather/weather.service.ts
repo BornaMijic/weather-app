@@ -6,7 +6,6 @@ import { Forecast } from './forecast.model';
 import { RootObject } from './root-object.model';
 import { environment } from '../../environments/environment.prod';
 import { RootObjectFiveDay } from './weather-details/root-object-five-day.model';
-import {FormGroup} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root',
