@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./weather-details-hours-specific.component.css'],
 })
 export class WeatherDetailsHoursSpecificComponent implements OnInit, OnDestroy {
-  readonly NUMBER_FORMAT: string = '1.2-2';
+  readonly NUMBER_FORMAT: string = '1.0-0';
   private subscription: Subscription = new Subscription();
 
   constructor(

@@ -1,14 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   AbstractControl,
-  Form,
   FormArray,
   FormControl,
   FormGroup,
-  NgForm,
   Validators,
 } from '@angular/forms';
-import { Observable, of, Subscription } from 'rxjs';
+import {Subscription } from 'rxjs';
 import { WeatherService } from './weather.service';
 import { Forecast } from './forecast.model';
 
@@ -20,9 +18,10 @@ import { Forecast } from './forecast.model';
 export class WeatherComponent implements OnInit, OnDestroy {
   weathers: Forecast[] = [];
   cities: string[] = [];
+  favoriteCities: string[] = [];
   error: string = '';
   private subscription: Subscription = new Subscription();
-  readonly NUMBER_FORMAT: string = '1.2-2';
+  readonly NUMBER_FORMAT: string = '1.0-0';
 
   weatherForm!: FormGroup;
 
@@ -38,6 +37,14 @@ export class WeatherComponent implements OnInit, OnDestroy {
     });
 
     let subscription = this.weatherService
+      .getFavoriteCities()
+      .subscribe((resData: string[]) => {
+        this.favoriteCities = resData;
+      });
+
+    this.subscription.add(subscription);
+
+    subscription = this.weatherService
       .getSearchedCityNames()
       .subscribe((resData: string[]) => {
         this.cities = resData;
@@ -106,9 +113,30 @@ export class WeatherComponent implements OnInit, OnDestroy {
     this.weatherForm.controls['citySearchName'].reset();
   }
 
+  addFavorite(event: Event,weatherCtrl: AbstractControl): boolean {
+    event.stopPropagation()
+    let forecast: Forecast = new Forecast(weatherCtrl.value["cityName"], weatherCtrl.value['weatherIcon'], weatherCtrl.value["currentTemperature"], weatherCtrl.value["wind"], weatherCtrl.value["humidity"]);
+    this.weatherService.addFavorite(forecast);
+    return false;
+  }
+
+  removeFavoriteWithName(event: Event,cityName: string) {
+    event.stopPropagation()
+    let index: number = this.favoriteCities.findIndex(city => city == cityName);
+    this.weatherService.removeFavorite(index)
+  }
+
   deleteWeather(index: number) {
     this.weatherService.deleteWeather(index);
     this.weatherForm.controls['citySearchName'].reset();
+  }
+
+  checkIfAlreadyFavorite(cityName: string) {
+    if(this.favoriteCities.find(city => city == cityName)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   private addFormArrayValues(weathers: Forecast[]) {

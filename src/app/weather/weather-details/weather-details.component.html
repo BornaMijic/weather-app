@@ -8,6 +8,7 @@
         *ngFor="let forecast of forecasts"
         routerLink="{{ forecast.date | date: DATE }}"
       >
+        <hr />
         <p class="text-color-grey text-center">
           {{ forecast.date | date: DATE }}
         </p>

@@ -1,0 +1,37 @@
+<app-navigation></app-navigation>
+<div class="container">
+  <div class="vertical-center border-box">
+    <div *ngIf="favoriteWeathers.length > 0">
+      <div class="row working-area">
+        <div
+          class="col-md-4 offset-md-4"
+          *ngFor="let weatherFavorite of favoriteWeathers; let i = index"
+          [routerLink]="['/weather', weatherFavorite.cityName]"
+        >
+          <div class="weather-background text-center relative-position">
+            <h3>{{ weatherFavorite.cityName }}</h3>
+            <img class="bookmark-color bookmark-size absolute-position-left absolute-position-right" src="assets/images/bookmark-check-fill.svg" (click)=removeFavorite(i)/>
+            <hr/>
+            <img
+              class="img-responsive center-block img-min-height"
+              [src]="weatherFavorite.icon"
+            />
+            <p class="weather-detail-color">
+              Temp:
+              {{
+              weatherFavorite.currentTemperature
+                | number: NUMBER_FORMAT
+              }}<span>&#8451;</span>
+            </p>
+            <p class="weather-detail-color">
+              Wind Speed: {{ weatherFavorite.wind }}
+            </p>
+            <p class="weather-detail-color">
+              Humidity: {{ weatherFavorite.humidity }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

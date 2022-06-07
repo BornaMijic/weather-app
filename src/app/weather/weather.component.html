@@ -32,10 +32,19 @@
           class="col-md-4 offset-md-4"
           *ngFor="let weatherCtrl of controls; let i = index"
           [formGroupName]="i"
-          [routerLink]="['/weather', this.weatherCtrl.value['cityName']]"
+          [routerLink]="['/weather', weatherCtrl.value['cityName']]"
         >
-          <div class="weather-background text-center">
+          <div class="weather-background text-center relative-position">
             <h3>{{ this.weatherCtrl.value["cityName"] }}</h3>
+            <img class="bookmark-color-no-favorite bookmark-size absolute-position-left" *ngIf="!checkIfAlreadyFavorite(weatherCtrl.value['cityName'])" src="assets/images/bookmark-check.svg" (click)="addFavorite($event, weatherCtrl)"/>
+            <img class="bookmark-color bookmark-size absolute-position-left" *ngIf="checkIfAlreadyFavorite(weatherCtrl.value['cityName'])" src="assets/images/bookmark-check-fill.svg" (click)="removeFavoriteWithName($event,weatherCtrl.value['cityName'])"/>
+            <button
+              type="button"
+              class="btn btn-primary absolute-position-right"
+              (click)="deleteWeather(i)"
+            >
+              X
+            </button>
             <hr />
             <img
               class="img-responsive center-block img-min-height"
@@ -54,13 +63,6 @@
             <p class="weather-detail-color">
               Humidity: {{ this.weatherCtrl.value["humidity"] }}
             </p>
-            <button
-              type="button"
-              class="btn btn-danger"
-              (click)="deleteWeather(i)"
-            >
-              X
-            </button>
           </div>
         </div>
       </div>

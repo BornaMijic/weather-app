@@ -15,6 +15,9 @@ export class WeatherService {
   weathers: Forecast[] = [];
   errorSubject: Subject<string> = new Subject<string>();
   cities: string[] = [];
+  favoriteCities: string[] = [];
+  favoriteWeathersSubject: Subject<Forecast[]> = new Subject<Forecast[]>();
+  favoriteWeathers: Forecast[] = [];
 
   constructor(private dataStorageService: DataStorageService) {}
 
@@ -22,8 +25,24 @@ export class WeatherService {
     return of(this.cities);
   }
 
+  getFavoriteCities(): Observable<string[]> {
+    const value = localStorage.getItem('favorite_cities');
+    if (typeof value === 'string') {
+      this.favoriteCities = JSON.parse(value);
+    }
+    return of(this.favoriteCities);
+  }
+
   getCitiesWeathers(): Forecast[] {
     return this.weathers;
+  }
+
+  getFavoriteWeathers(): Forecast[] {
+    const value = localStorage.getItem("favorite_weathers");
+    if (typeof value === 'string') {
+      this.favoriteWeathers = JSON.parse(value);
+    }
+    return this.favoriteWeathers;
   }
 
   getCityWeather(city: string): void {
@@ -62,9 +81,26 @@ export class WeatherService {
     return this.dataStorageService.getHourlyWeatherForecast(cityName);
   }
 
+  addFavorite(favoriteWeather: Forecast) {
+    this.favoriteCities.push(favoriteWeather.cityName);
+    this.favoriteWeathers.push(favoriteWeather);
+    this.favoriteWeathersSubject.next(this.favoriteWeathers);
+    localStorage.setItem('favorite_weathers', JSON.stringify(this.favoriteWeathers))
+    localStorage.setItem('favorite_cities', JSON.stringify(this.favoriteCities))
+  }
+
   deleteWeather(index: number): void {
     this.weathers.splice(index, 1);
     this.weatherSubject.next(this.weathers);
     this.cities.splice(index, 1);
   }
+
+  removeFavorite(index: number): void {
+    this.favoriteCities.splice(index, 1);
+    this.favoriteWeathers.splice(index, 1);
+    this.favoriteWeathersSubject.next(this.favoriteWeathers);
+    localStorage.setItem('favorite_weathers', JSON.stringify(this.favoriteWeathers))
+    localStorage.setItem('favorite_cities', JSON.stringify(this.favoriteCities))
+  }
+
 }

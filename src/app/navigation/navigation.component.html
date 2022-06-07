@@ -3,6 +3,14 @@
     <div class="navbar-header" routerLinkVariable="/weather">
       <a class="navbar-brand cursor-style"> WeatherApp </a>
     </div>
+    <ul class="nav navbar-nav navbar-left">
+      <li routerLink="/weather">
+        <a class="cursor-style">Search</a>
+      </li>
+      <li routerLink="/weather/favorites">
+        <a class="cursor-style">Favorites</a>
+      </li>
+    </ul>
     <ul class="nav navbar-nav navbar-right">
       <li (click)="logout()">
         <a class="cursor-style">Logout</a>
